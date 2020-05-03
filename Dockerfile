@@ -1,6 +1,6 @@
 FROM node:12-slim
 
-MAINTAINER Ashutosh Sahoo
+MAINTAINER ashutoshsahoo
 
 LABEL version="1.0.0"
 
