@@ -1,0 +1,63 @@
+{
+  "name": "user-service",
+  "version": "1.0.0",
+  "description": "Provides services to manage users.",
+  "main": "dist/server.js",
+  "scripts": {
+    "postinstall": "npx tsc",
+    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
+    "build-ts": "tsc",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "build": "npm run build-ts && npm run lint",
+    "start": "pm2 start pm2.yaml",
+    "stop": "pm2 stop pm2.yaml",
+    "watch-test": "npm run test -- --watchAll",
+    "test": "jest --forceExit --coverage --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashutoshahoo/user-service"
+  },
+  "author": "ashutoshsahoo",
+  "license": "ISC",
+  "dependencies": {
+    "argon2-pass": "^1.0.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "jsonwebtoken": "^8.5.1",
+    "maskdata": "^1.1.0",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.28",
+    "mongoose": "^5.9.10",
+    "pm2": "^4.4.0",
+    "short-uuid": "^3.1.1",
+    "swagger-ui-express": "^4.1.4",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/dotenv": "^8.2.0",
+    "@types/eslint": "^6.8.0",
+    "@types/express": "^4.17.6",
+    "@types/helmet": "0.0.46",
+    "@types/jest": "^25.2.1",
+    "@types/jsonwebtoken": "^8.3.9",
+    "@types/mocha": "^7.0.2",
+    "@types/mongoose": "^5.7.14",
+    "@types/node": "^13.13.4",
+    "@types/supertest": "^2.0.9",
+    "@types/winston": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "jest": "^25.5.2",
+    "mocha": "^7.1.2",
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.4.0",
+    "ts-node": "^8.9.1",
+    "tsc-watch": "^4.2.3",
+    "typescript": "^3.8.3"
+  }
+}
