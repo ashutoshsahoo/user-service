@@ -1,8 +1,8 @@
 FROM node:12-slim
 
-MAINTAINER ashutoshsahoo
+LABEL maintainer="ashutoshsahoo"
 
-LABEL version="1.0.0"
+LABEL version="2.0.0"
 
 LABEL description="User service"
 

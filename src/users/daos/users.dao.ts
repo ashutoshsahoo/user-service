@@ -59,7 +59,7 @@ export class UsersDao {
   public async getUserById(userId: string) {
     return this.User.findOne({ _id: userId });
   }
-  public async listUsers(limit: number = 25, page: number = 0) {
+  public async listUsers(limit = 25, page = 0) {
     return this.User.find()
       .limit(limit)
       .skip(limit * page)
