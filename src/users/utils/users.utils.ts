@@ -19,7 +19,7 @@ const maskedEmail = (email: string) =>
   MaskData.maskEmail2(email, emailMask2Options);
 
 export const removeSecuredFields = (user: Document): Document => {
-  user = user.toJSON();
+  user = user.toJSON() as Document;
   delete user._id;
   delete user.__v;
   delete (user as any).password;
