@@ -30,9 +30,6 @@ export class UserRoutes extends CommonRoutes {
       .route("/users/:userId")
       .put([
         jwtMiddleware.validJWTNeeded,
-        commonPermissionMiddleware.minimumPermissionLevelRequired(
-          CommonPermissionMiddleware.BASIC_PERMISSION
-        ),
         commonPermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
         usersMiddleware.validateUserExists,
         usersMiddleware.extractUserId,
@@ -40,9 +37,6 @@ export class UserRoutes extends CommonRoutes {
       ])
       .patch([
         jwtMiddleware.validJWTNeeded,
-        commonPermissionMiddleware.minimumPermissionLevelRequired(
-          CommonPermissionMiddleware.BASIC_PERMISSION
-        ),
         commonPermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
         usersMiddleware.validateUserExists,
         usersMiddleware.extractUserId,
@@ -50,9 +44,6 @@ export class UserRoutes extends CommonRoutes {
       ])
       .delete([
         jwtMiddleware.validJWTNeeded,
-        commonPermissionMiddleware.minimumPermissionLevelRequired(
-          CommonPermissionMiddleware.BASIC_PERMISSION
-        ),
         commonPermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
         usersMiddleware.validateUserExists,
         usersMiddleware.extractUserId,
@@ -60,9 +51,6 @@ export class UserRoutes extends CommonRoutes {
       ])
       .get([
         jwtMiddleware.validJWTNeeded,
-        commonPermissionMiddleware.minimumPermissionLevelRequired(
-          CommonPermissionMiddleware.BASIC_PERMISSION
-        ),
         commonPermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
         usersMiddleware.validateUserExists,
         usersMiddleware.extractUserId,

@@ -1,6 +1,7 @@
-version: '3'
+version: '3.8'
 services:
   userservice:
+    image: user-service:latest
     build: .
     container_name: userservice
     links:
@@ -8,22 +9,36 @@ services:
     networks:
       - user-service-backend
     ports:
-      - "3000:3000"
+      - '3000:3000'
 
-  mongodb:
-      image: mongo:latest
-      container_name: mongodb
-      environment:
-        - MONGO_INITDB_ROOT_USERNAME=root
-        - MONGO_INITDB_ROOT_PASSWORD=password123
-        - MONGO_INITDB_DATABASE=emp_database
-      hostname: mongodb
-      networks:
-        - user-service-backend
-      ports:
-        - 27017:27017
-      volumes:
-        - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+  mongodb: #https://hub.docker.com/_/mongo
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password123
+      - MONGO_INITDB_DATABASE=emp_database
+    hostname: mongodb
+    networks:
+      - user-service-backend
+    ports:
+      - 27017:27017
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+
+  mongo-express: #https://hub.docker.com/_/mongo-express
+    image: mongo-express:latest
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: P@ssword01
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password123
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    networks:
+      - user-service-backend
 
 networks:
   user-service-backend:

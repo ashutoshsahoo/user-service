@@ -10,7 +10,7 @@ export abstract class CommonRoutes {
     this.configureRoutes();
   }
 
-  public getName() {
+  public getName(): string {
     return this.name;
   }
 

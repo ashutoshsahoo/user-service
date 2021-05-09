@@ -17,7 +17,7 @@ export class MongooseService {
     this.connectWithRetry();
   }
 
-  public static getInstance() {
+  public static getInstance(): MongooseService {
     if (!this.instance) {
       this.instance = new MongooseService();
     }

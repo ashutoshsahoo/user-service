@@ -1,14 +1,14 @@
-import { Request, Response, NextFunction } from "express";
-import { UsersService } from "../services/users.services";
+import { Request, Response, NextFunction } from 'express'
+import { UsersService } from '../services/users.services'
 
 export class UsersMiddleware {
-  private static instance: UsersMiddleware;
+  private static instance: UsersMiddleware
 
   public static getInstance() {
     if (!UsersMiddleware.instance) {
-      UsersMiddleware.instance = new UsersMiddleware();
+      UsersMiddleware.instance = new UsersMiddleware()
     }
-    return UsersMiddleware.instance;
+    return UsersMiddleware.instance
   }
 
   public validateRequiredCreateUserBodyFields(
@@ -17,11 +17,11 @@ export class UsersMiddleware {
     next: NextFunction
   ) {
     if (req.body && req.body.email && req.body.password) {
-      next();
+      next()
     } else {
       res
         .status(404)
-        .send({ error: "Missing required fields email and password" });
+        .send({ error: 'Missing required fields email and password' })
     }
   }
 
@@ -30,12 +30,12 @@ export class UsersMiddleware {
     res: Response,
     next: NextFunction
   ) {
-    const userService = UsersService.getInstance();
-    const user = await userService.getByEmail(req.body.email);
+    const userService = UsersService.getInstance()
+    const user = await userService.getByEmail(req.body.email)
     if (user) {
-      res.status(400).send({ error: "User email already exists" });
+      res.status(400).send({ error: 'User email already exists' })
     } else {
-      next();
+      next()
     }
   }
 
@@ -44,17 +44,17 @@ export class UsersMiddleware {
     res: Response,
     next: NextFunction
   ) {
-    const userService = UsersService.getInstance();
-    const user = await userService.readById(req.params.userId);
+    const userService = UsersService.getInstance()
+    const user = await userService.readById(req.params.userId)
     if (user) {
-      next();
+      next()
     } else {
-      res.status(404).send({ error: `User ${req.params.userId} not found` });
+      res.status(404).send({ error: `User ${req.params.userId} not found` })
     }
   }
 
   public async extractUserId(req: Request, res: Response, next: NextFunction) {
-    req.body.id = req.params.userId;
-    next();
+    req.body.id = req.params.userId
+    next()
   }
 }
