@@ -27,7 +27,7 @@
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "maskdata": "^1.1.6",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.33",
     "mongoose": "^5.13.8",
     "pm2": "^5.1.1",
